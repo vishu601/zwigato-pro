@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: zwigato-pro-app
+    container_name: zwigato-app
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/var/www
+      - /var/www/vendor
+    networks:
+      - zwigato-network
+
+networks:
+  zwigato-network:
+    driver: bridge
